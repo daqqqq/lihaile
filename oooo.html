@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06jquer方法的使用</title>
+	<script src="js/jquery-3.1.1.js"></script>
+	<script>
+		// window.onload与document的ready区别在哪
+		// jQuery(document).ready(function(){
+		// 	aa
+		// })
+
+		// jQuery.prototype.ready = function(fn){
+		// 	document.addEventListener('DOMContentLoaded',function(){
+		// 		fn();
+		// 	})
+		// }
+
+		$(function(){
+			// 给li添加item1~item10
+			// $('.datalist li').addClass('item');
+
+			/*$('.datalist li').each(function(idx,ele){
+				// this === ele
+				$(ele).addClass('item'+(idx+1))
+			})*/
+
+			$('.datalist li').addClass(function(idx,old){
+				// console.log(idx,old)
+				return 'item' + (idx+1)
+			})
+		});
+	</script>
+</head>
+<body>
+	<ul class="datalist">
+		<li>数据1</li>
+		<li>数据2</li>
+		<li>数据3</li>
+		<li>数据4</li>
+		<li>数据5</li>
+		<li>数据6</li>
+		<li>数据7</li>
+		<li>数据8</li>
+		<li>数据9</li>
+		<li>数据10</li>
+	</ul>
+</body>
+</html>

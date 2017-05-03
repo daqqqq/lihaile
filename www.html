@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05表格选择</title>
+	<style>
+		table{border:1px solid #ddd;border-collapse: collapse;}
+		td{border:1px solid #ddd;padding:5px 10px;}
+		table tr.selected{background-color: #fc0;}
+	</style>
+	<script src="js/jquery-3.1.1.js"></script>
+	<script>
+		$(function(){
+			var $checkbox = $('.datalist :checkbox');
+			var $trs = $('.datalist tr');
+
+			$('#all').on('click',function(){
+				// if($('#all').prop('checked')){
+				// 	$checkbox.prop('checked',true);
+				// }else{
+				// 	$checkbox.prop('checked',false);
+				// }
+
+				var checkAll = $('#all').prop('checked');
+
+				// 让所有的复选框勾选状态与#all的勾选状态一样
+				$checkbox.prop('checked',checkAll);
+				if(checkAll){
+					$trs.addClass('selected');
+				}else{
+					$trs.removeClass('selected');
+				}
+			});
+
+			// 反选
+			$('#fx').on('click',function(){
+				// jquery的循环
+				$checkbox.each(function(idx,ele){
+					// 判断是否为jquery
+					// ele.jquery
+					ele.checked = !ele.checked;
+					// $(ele).prop('checked',!$(ele).prop('checked'));
+				});
+
+				var $checked = $checkbox.filter(':checked');
+
+				$('#all').prop('checked',$checked.length===$checkbox.length);
+			});
+
+
+			// jquery的事件委托
+			$('.datalist').on('click',':checkbox',function(e){
+				// 先获取勾选的复选框
+				// 然后判断勾选数量与所有复选框数量是否相等
+				// var $checked = $('.datalist :checked');
+				var $checked = $checkbox.filter(':checked');
+
+				$('#all').prop('checked',$checked.length===$checkbox.length);
+
+				// 获取当前行，高亮当前行
+				$currentTr = $(this).parents('tr');
+
+				if(this.checked){
+					$currentTr.addClass('selected');
+				}else{
+					$currentTr.removeClass('selected');
+				}
+			})
+
+			// 删除
+			.on('click','button',function(){
+				var $currentTr = $(this).closest('tr');
+
+				// 删除当前行
+				// $currentTr[0].parentNode.removeChild($currentTr[0])
+				$currentTr.remove()
+			})
+		})
+	</script>
+</head>
+<body>
+	<div>
+		<input type="checkbox" id="all">全选
+		<input type="checkbox" id="fx">反选
+	</div>
+	<table class="datalist">
+		<tr>
+			<td><input type="checkbox"></td>
+			<td>单元格01</td>
+			<td>单元格02</td>
+			<td>单元格03</td>
+			<td>单元格04</td>
+			<td>单元格05</td>
+			<td><button>删除</button></td>
+		</tr>
+		<tr>
+			<td><input type="checkbox"></td>
+			<td>单元格01</td>
+			<td>单元格02</td>
+			<td>单元格03</td>
+			<td>单元格04</td>
+			<td>单元格05</td>
+			<td><button>删除</button></td>
+		</tr>
+		<tr>
+			<td><input type="checkbox"></td>
+			<td>单元格01</td>
+			<td>单元格02</td>
+			<td>单元格03</td>
+			<td>单元格04</td>
+			<td>单元格05</td>
+			<td><button>删除</button></td>
+		</tr>
+		<tr>
+			<td><input type="checkbox"></td>
+			<td>单元格01</td>
+			<td>单元格02</td>
+			<td>单元格03</td>
+			<td>单元格04</td>
+			<td>单元格05</td>
+			<td><button>删除</button></td>
+		</tr>
+		<tr>
+			<td><input type="checkbox"></td>
+			<td>单元格01</td>
+			<td>单元格02</td>
+			<td>单元格03</td>
+			<td>单元格04</td>
+			<td>单元格05</td>
+			<td><button>删除</button></td>
+		</tr>
+		<tr>
+			<td><input type="checkbox"></td>
+			<td>单元格01</td>
+			<td>单元格02</td>
+			<td>单元格03</td>
+			<td>单元格04</td>
+			<td>单元格05</td>
+			<td><button>删除</button></td>
+		</tr>
+		<tr>
+			<td><input type="checkbox"></td>
+			<td>单元格01</td>
+			<td>单元格02</td>
+			<td>单元格03</td>
+			<td>单元格04</td>
+			<td>单元格05</td>
+			<td><button>删除</button></td>
+		</tr>
+		<tr>
+			<td><input type="checkbox"></td>
+			<td>单元格01</td>
+			<td>单元格02</td>
+			<td>单元格03</td>
+			<td>单元格04</td>
+			<td>单元格05</td>
+			<td><button>删除</button></td>
+		</tr>
+		<tr>
+			<td><input type="checkbox"></td>
+			<td>单元格01</td>
+			<td>单元格02</td>
+			<td>单元格03</td>
+			<td>单元格04</td>
+			<td>单元格05</td>
+			<td><button>删除</button></td>
+		</tr>
+		<tr>
+			<td><input type="checkbox"></td>
+			<td>单元格01</td>
+			<td>单元格02</td>
+			<td>单元格03</td>
+			<td>单元格04</td>
+			<td>单元格05</td>
+			<td><button>删除</button></td>
+		</tr>
+	</table>
+</body>
+</html>

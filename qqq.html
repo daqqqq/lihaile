@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-3.1.1.js"></script>
+	<script>
+		$(function(){
+			/*
+				prop():
+					改变布尔类型属性
+					* readonly
+					* autofocus
+					* disabled
+					* checked
+					* selected
+					* required
+					* .....
+				attr(a):
+					获取/改变一般属性
+			 */
+
+			// 同时改变多个属性
+			$('#username').prop({
+				readonly:true,
+				autofocus:true,
+				disabled:true
+			}).attr({
+				'data-title':'xxx',
+				'class':'nihao'
+			});
+		})
+	</script>
+</head>
+<body>
+	<input type="text" id="username">
+</body>
+</html>
